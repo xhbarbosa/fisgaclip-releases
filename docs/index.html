@@ -177,7 +177,60 @@
     .nav .btn { width: auto; }
     .guarantee { flex-direction: column; text-align: center; }
   }
+  .cookie-bar { position: fixed; left: 16px; right: 16px; bottom: 16px; max-width: 640px; margin: 0 auto; z-index: 50; display: flex; align-items: center; gap: 16px; padding: 14px 16px; background: var(--card2); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 12px 40px rgba(0,0,0,.45); font-size: 14px; color: var(--sub); }
+  .cookie-bar[hidden] { display: none; }
+  .cookie-bar p { flex: 1; }
+  .cookie-bar a { color: var(--text); text-decoration: underline; }
+  .cookie-bar .btn { width: auto; }
+  @media (max-width: 640px) { .cookie-bar { flex-direction: column; align-items: stretch; } .cookie-bar .btn { width: 100%; } }
 </style>
+<script>
+  // Rastreamento de anuncios. Preencha o ID e a tag passa a carregar sozinha.
+  // GOOGLE_TAG_ID: "AW-XXXXXXXXXX" (Google Ads > Metas > Conversoes > detalhes da tag)
+  var GOOGLE_TAG_ID = "";
+  // ADS_CHECKOUT_LABEL: rotulo da conversao "Clique no checkout" (ex.: "AbCdEf123")
+  var ADS_CHECKOUT_LABEL = "";
+  (function () {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    var consented = false;
+    function loadTag() {
+      if (consented || !GOOGLE_TAG_ID) return;
+      consented = true;
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=" + GOOGLE_TAG_ID;
+      document.head.appendChild(s);
+      gtag("js", new Date());
+      gtag("config", GOOGLE_TAG_ID);
+    }
+    function stored() { try { return localStorage.getItem("fc_consent"); } catch (e) { return null; } }
+    function store(v) { try { localStorage.setItem("fc_consent", v); } catch (e) {} }
+    document.addEventListener("DOMContentLoaded", function () {
+      var saved = stored();
+      if (saved === "yes") return loadTag();
+      if (saved === "no" || !GOOGLE_TAG_ID) return;
+      var bar = document.getElementById("cookie-bar");
+      if (!bar) return;
+      bar.hidden = false;
+      document.getElementById("cookie-yes").onclick = function () { store("yes"); bar.hidden = true; loadTag(); };
+      document.getElementById("cookie-no").onclick = function () { store("no"); bar.hidden = true; };
+    });
+    var PLANS = { ONTjl2q: ["mensal", 19.9], YHZGobH: ["semestral", 89.9], iJv96oC: ["anual", 149.9] };
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest("a[href]");
+      if (!a || !GOOGLE_TAG_ID) return;
+      var href = a.getAttribute("href");
+      var m = href.match(/kiwify\.com\.br\/([A-Za-z0-9]+)/);
+      if (m && PLANS[m[1]]) {
+        gtag("event", "begin_checkout", { currency: "BRL", value: PLANS[m[1]][1], items: [{ item_name: "Pro " + PLANS[m[1]][0] }] });
+        if (ADS_CHECKOUT_LABEL) gtag("event", "conversion", { send_to: GOOGLE_TAG_ID + "/" + ADS_CHECKOUT_LABEL, value: PLANS[m[1]][1], currency: "BRL" });
+      } else if (/Fisgaclip-Setup\.exe/.test(href)) {
+        gtag("event", "download_app");
+      }
+    }, true);
+  })();
+</script>
 </head>
 <body>
 
@@ -399,6 +452,12 @@
     <p class="legal">© 2026 Fisgaclip. Fisgaclip não é afiliado, patrocinado ou endossado por YouTube, Google, TikTok, ByteDance, Instagram, Meta, X ou Twitch; os nomes dessas plataformas são marcas de seus respectivos donos e aparecem aqui apenas para indicar compatibilidade. Use o app somente com conteúdo que você tem direito de baixar. Pagamentos processados pela Kiwify.</p>
   </div>
 </footer>
+
+<div class="cookie-bar" id="cookie-bar" role="dialog" aria-label="Aviso de cookies" hidden>
+  <p>Usamos cookies de medição do Google para entender de onde vêm as visitas e melhorar nossos anúncios. <a href="termos.html">Saiba mais</a></p>
+  <button class="btn btn-ghost btn-sm" id="cookie-no" type="button">Recusar</button>
+  <button class="btn btn-brand btn-sm" id="cookie-yes" type="button">Aceitar</button>
+</div>
 
 </body>
 </html>
