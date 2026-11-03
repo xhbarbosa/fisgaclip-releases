@@ -7,8 +7,10 @@
 <meta name="description" content="Termos de uso e política de privacidade do Fisgaclip, app para Windows que analisa canais e baixa os vídeos que mais performaram.">
 <link rel="canonical" href="https://xhbarbosa.github.io/fisgaclip-releases/termos.html">
 <link rel="icon" href="assets/favicon.ico">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
+  @font-face { font-family: Inter; font-weight: 400; font-display: swap; src: url(assets/fonts/inter-400.woff2) format("woff2"); }
+  @font-face { font-family: Inter; font-weight: 600; font-display: swap; src: url(assets/fonts/inter-600.woff2) format("woff2"); }
+  @font-face { font-family: Inter; font-weight: 800; font-display: swap; src: url(assets/fonts/inter-800.woff2) format("woff2"); }
   body { margin: 0; background: #0C0D11; color: #EEEFF3; font: 16px/1.7 Inter, "Segoe UI", system-ui, sans-serif; }
   .wrap { max-width: 780px; margin: 0 auto; padding: 48px 20px 80px; }
   a { color: #A894FF; }
@@ -22,7 +24,7 @@
 <div class="wrap">
   <a href="index.html">← Voltar para o Fisgaclip</a>
   <h1>Termos de uso e privacidade</h1>
-  <p class="muted">Última atualização: 29 de outubro de 2026</p>
+  <p class="muted">Última atualização: 2 de novembro de 2026</p>
 
   <h2>1. O que é o Fisgaclip</h2>
   <p>O Fisgaclip é um aplicativo para Windows que analisa perfis, canais e playlists de vídeo e permite baixar e organizar conteúdo a partir de links informados pelo próprio usuário. O app usa componentes de código aberto (yt-dlp, FFmpeg e Deno), instalados no computador do usuário pelo instalador oficial da Microsoft (winget).</p>
@@ -47,11 +49,13 @@
   <ul>
     <li><b>Compra:</b> a Kiwify nos envia o e-mail, o nome e os dados do pedido/assinatura, usados apenas para liberar e manter o seu acesso ao Pro. Não recebemos dados de cartão.</li>
     <li><b>Ativação:</b> um identificador anônimo do computador (gerado a partir de dados do Windows e transformado em código irreversível), o nome do computador e a versão do app, para controlar o limite de 2 computadores.</li>
-    <li><b>Relatos de problema:</b> somente quando você envia um relato, recebemos a mensagem, o e-mail que você informar e, se você deixar marcado, informações técnicas (versão, erros recentes) e uma captura da tela do app. O nome de usuário do Windows é removido antes do envio.</li>
+    <li><b>Relatos de problema:</b> somente quando você envia um relato, recebemos a mensagem, o e-mail que você informar, o identificador anônimo do computador, a versão do app, a versão do Windows e o seu plano. Se você deixar marcado, recebemos também informações técnicas (erros recentes e o registro do app, sem links) com a chave da sua assinatura, e uma captura da tela do app. O nome de usuário do Windows é removido antes do envio. Quando o relato vem de um download que falhou, a mensagem já aparece preenchida com o link, e você pode apagá-lo antes de enviar. Guardamos os relatos por até 90 dias.</li>
+    <li><b>Proteção contra abuso:</b> ao ativar o Pro ou enviar um relato, o endereço IP, o e-mail e o identificador do computador são usados para limitar tentativas repetidas, mesmo que você não seja cliente. Guardamos apenas um código irreversível desses dados, por até 1 dia.</li>
+    <li><b>Eventos de compra:</b> os avisos enviados pela Kiwify ficam guardados por até 180 dias, para conferência de pagamentos e reembolsos.</li>
     <li><b>Atualizações:</b> o app consulta periodicamente o GitHub para saber se há uma nova versão.</li>
-    <li><b>Site e anúncios:</b> se você aceitar os cookies de medição no aviso do site, usamos a tag do Google para medir visitas e cliques em download e em assinatura, e avaliar nossos anúncios. Sem o seu aceite, nenhuma tag é carregada. Você pode mudar de ideia limpando os dados do site no navegador.</li>
+    <li><b>Site e anúncios:</b> se você aceitar os cookies de medição no aviso do site, usamos a tag do Google para medir visitas e cliques em download e em assinatura, e avaliar nossos anúncios. Sem o seu aceite, nenhuma tag é carregada. Você pode mudar de ideia a qualquer momento pelo link Cookies no rodapé do site.</li>
   </ul>
-  <p>Os links que você cola, os arquivos baixados e o histórico de downloads ficam apenas no seu computador. A opção “Usar login do navegador” lê os cookies do navegador escolhido localmente, só para o download; eles não são enviados para nós.</p>
+  <p>Os links que você cola, os arquivos baixados e o histórico de downloads ficam apenas no seu computador, exceto um link que você mesmo mantiver na mensagem de um relato. A opção “Usar login do navegador” lê os cookies do navegador escolhido localmente, só para o download; eles não são enviados para nós.</p>
   <p>Os dados ficam armazenados em servidores do Supabase (região São Paulo). Você pode pedir acesso, correção ou exclusão dos seus dados (LGPD) pelo “Reportar um problema” no app ou respondendo ao e-mail da compra.</p>
 
   <h2>6. Alterações</h2>

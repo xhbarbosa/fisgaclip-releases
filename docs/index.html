@@ -39,10 +39,12 @@
 }
 </script>
 <link rel="icon" href="assets/favicon.ico">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+  @font-face { font-family: Inter; font-weight: 400; font-display: swap; src: url(assets/fonts/inter-400.woff2) format("woff2"); }
+  @font-face { font-family: Inter; font-weight: 500; font-display: swap; src: url(assets/fonts/inter-500.woff2) format("woff2"); }
+  @font-face { font-family: Inter; font-weight: 600; font-display: swap; src: url(assets/fonts/inter-600.woff2) format("woff2"); }
+  @font-face { font-family: Inter; font-weight: 700; font-display: swap; src: url(assets/fonts/inter-700.woff2) format("woff2"); }
+  @font-face { font-family: Inter; font-weight: 800; font-display: swap; src: url(assets/fonts/inter-800.woff2) format("woff2"); }
   :root {
     --bg: #0C0D11; --bg2: #101117; --card: #15161D; --card2: #1C1E27; --line: #242632;
     --text: #EEEFF3; --sub: #A3A6B4; --muted: #6C6F80;
@@ -216,15 +218,35 @@
     }
     function stored() { try { return localStorage.getItem("fc_consent"); } catch (e) { return null; } }
     function store(v) { try { localStorage.setItem("fc_consent", v); } catch (e) {} }
-    document.addEventListener("DOMContentLoaded", function () {
-      var saved = stored();
-      if (saved === "yes") return loadTag();
-      if (saved === "no" || !GOOGLE_TAG_ID) return;
+    function clearCookies() {
+      document.cookie.split(";").forEach(function (c) {
+        var name = c.split("=")[0].trim();
+        if (/^_(ga|gcl|gid)/.test(name)) document.cookie = name + "=; Max-Age=0; path=/";
+      });
+    }
+    function askConsent() {
       var bar = document.getElementById("cookie-bar");
       if (!bar) return;
       bar.hidden = false;
       document.getElementById("cookie-yes").onclick = function () { store("yes"); bar.hidden = true; loadTag(); };
-      document.getElementById("cookie-no").onclick = function () { store("no"); bar.hidden = true; };
+      document.getElementById("cookie-no").onclick = function () {
+        var wasOn = consented;
+        store("no");
+        bar.hidden = true;
+        clearCookies();
+        if (wasOn) location.reload();
+      };
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      var saved = stored();
+      var link = document.getElementById("cookie-open");
+      if (link && GOOGLE_TAG_ID) {
+        link.hidden = false;
+        link.onclick = function (e) { e.preventDefault(); askConsent(); };
+      }
+      if (saved === "yes") return loadTag();
+      if (saved === "no" || !GOOGLE_TAG_ID) return;
+      askConsent();
     });
     var PLANS = { ONTjl2q: ["mensal", 19.9], YHZGobH: ["semestral", 89.9], iJv96oC: ["anual", 149.9] };
     document.addEventListener("click", function (e) {
@@ -453,7 +475,7 @@
         <details><summary>Posso usar em mais de um computador?</summary><p>Sim, cada assinatura funciona em até 2 computadores. Trocou de PC? Desative no antigo (Configurações › Conta) e ative no novo.</p></details>
         <details><summary>Preciso de internet o tempo todo?</summary><p>Para baixar e analisar, sim. A verificação da assinatura continua valendo por até 7 dias sem internet.</p></details>
         <details><summary>Como cancelo?</summary><p>Pela sua área de cliente da Kiwify (link no e-mail de compra), quando quiser. O Pro continua ativo até o fim do período que você já pagou.</p></details>
-        <details><summary>O Windows mostrou um aviso ao instalar. É seguro?</summary><p>Sim. O Fisgaclip é novo e o Windows SmartScreen ainda está “conhecendo” o app. Se aparecer o aviso, clique em “Mais informações” › “Executar assim mesmo”. O instalador não pede senha de administrador e o app se atualiza sozinho.</p></details>
+        <details><summary>O Windows mostrou um aviso ao instalar. É seguro?</summary><p>Sim. O Fisgaclip é novo e o Windows SmartScreen ainda está “conhecendo” o app. Se aparecer o aviso, clique em “Mais informações” › “Executar assim mesmo”. O instalador não pede senha de administrador. Quando sai uma versão nova, o app avisa e você instala com um clique.</p></details>
         <details><summary>Quais plataformas são suportadas?</summary><p>YouTube (vídeos, Shorts, playlists e canais), TikTok, Instagram (Reels e posts), X, Twitch e mais de mil outros sites de vídeo. A análise de perfis funciona melhor no YouTube e no TikTok.</p></details>
         <details><summary>Em quais plataformas os Melhores momentos funcionam?</summary><p>Funcionam melhor no YouTube, com vídeos e lives encerradas. Não estão disponíveis em links do TikTok e do Instagram. Os cortes verticais saem prontos para você postar no Shorts, no TikTok e no Reels.</p></details>
         <details><summary>Dá para ver uma imagem do corte antes de baixar?</summary><p>Sim, no Pro, nos vídeos do YouTube. Em Melhores momentos, cada corte da lista mostra uma imagem do trecho, para você ver a cena antes de baixar. A imagem é o quadro original do vídeo, sem o enquadramento vertical e sem legendas. Nas outras plataformas, a lista continua sem imagem. Se a imagem de um corte não carregar, ele continua na lista e você pode baixar normalmente.</p></details>
@@ -499,7 +521,7 @@
   <div class="wrap">
     <div class="row">
       <div class="logo" style="font-size:16px"><span class="logo-mark" style="width:26px;height:26px;border-radius:7px"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5v7.5M4.6 7 8 10.3 11.4 7M3.5 13.2h9"/></svg></span>Fisgaclip</div>
-      <div style="display:flex;gap:22px;flex-wrap:wrap"><a href="termos.html">Termos de uso e privacidade</a><a href="#duvidas">Dúvidas</a><a href="#planos">Planos</a><a href="#roadmap">Roadmap</a></div>
+      <div style="display:flex;gap:22px;flex-wrap:wrap"><a href="termos.html">Termos de uso e privacidade</a><a href="#" id="cookie-open" hidden>Cookies</a><a href="#duvidas">Dúvidas</a><a href="#planos">Planos</a><a href="#roadmap">Roadmap</a></div>
     </div>
     <p class="legal">© 2026 Fisgaclip. Fisgaclip não é afiliado, patrocinado ou endossado por YouTube, Google, TikTok, ByteDance, Instagram, Meta, X ou Twitch; os nomes dessas plataformas são marcas de seus respectivos donos e aparecem aqui apenas para indicar compatibilidade. Use o app somente com conteúdo que você tem direito de baixar. Pagamentos processados pela Kiwify.</p>
   </div>
