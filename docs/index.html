@@ -32,9 +32,8 @@
   "screenshot": "https://xhbarbosa.github.io/fisgaclip-releases/assets/app-analise.png",
   "offers": [
     { "@type": "Offer", "name": "Grátis", "price": "0", "priceCurrency": "BRL" },
-    { "@type": "Offer", "name": "Pro Mensal", "price": "19.90", "priceCurrency": "BRL", "url": "https://pay.kiwify.com.br/ONTjl2q" },
-    { "@type": "Offer", "name": "Pro Semestral", "price": "89.90", "priceCurrency": "BRL", "url": "https://pay.kiwify.com.br/YHZGobH" },
-    { "@type": "Offer", "name": "Pro Anual", "price": "149.90", "priceCurrency": "BRL", "url": "https://pay.kiwify.com.br/iJv96oC" }
+    { "@type": "Offer", "name": "Pro Mensal", "price": "29.90", "priceCurrency": "BRL", "url": "https://pay.kiwify.com.br/SldO3hC" },
+    { "@type": "Offer", "name": "Pro Anual", "price": "239.90", "priceCurrency": "BRL", "url": "https://pay.kiwify.com.br/OvbxfeK" }
   ]
 }
 </script>
@@ -129,7 +128,7 @@
 
   /* planos */
   #planos { background: linear-gradient(180deg, transparent, rgba(124,92,255,.06) 30%, transparent); }
-  .plans { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 48px; align-items: stretch; }
+  .plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 48px; align-items: stretch; }
   .plan { display: flex; flex-direction: column; position: relative; }
   .plan .name { font-weight: 700; font-size: 17px; }
   .plan .price { white-space: nowrap; font-size: clamp(28px, 2.6vw, 36px); font-weight: 800; letter-spacing: -1px; margin: 14px 0 0; }
@@ -166,7 +165,7 @@
   footer .legal { margin-top: 18px; max-width: 860px; line-height: 1.55; }
 
   @media (max-width: 960px) {
-    .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
+    .plans { row-gap: 28px; }
     .feature, .feature.rev { grid-template-columns: 1fr; gap: 24px; }
     .feature.rev .text { order: 0; }
   }
@@ -248,7 +247,7 @@
       if (saved === "no" || !GOOGLE_TAG_ID) return;
       askConsent();
     });
-    var PLANS = { ONTjl2q: ["mensal", 19.9], YHZGobH: ["semestral", 89.9], iJv96oC: ["anual", 149.9] };
+    var PLANS = { SldO3hC: ["mensal", 29.9], OvbxfeK: ["anual", 239.9] };
     document.addEventListener("click", function (e) {
       var a = e.target.closest && e.target.closest("a[href]");
       if (!a || !GOOGLE_TAG_ID) return;
@@ -420,7 +419,7 @@
         </div>
         <div class="card plan">
           <div class="name">Pro Mensal</div>
-          <div class="price">R$ 19,90<small> /mês</small></div>
+          <div class="price">R$ 29,90<small> /mês</small></div>
           <div class="per">cancele quando quiser</div>
           <ul>
             <li>Tudo do Grátis</li>
@@ -431,30 +430,19 @@
             <li>Perfis e playlists inteiros</li>
             <li>Até 2 computadores</li>
           </ul>
-          <a class="btn btn-ghost" href="https://pay.kiwify.com.br/ONTjl2q">Assinar mensal</a>
-        </div>
-        <div class="card plan">
-          <div class="name">Pro Semestral <span class="save">−25%</span></div>
-          <div class="price">R$ 89,90<small> /semestre</small></div>
-          <div class="per">equivale a R$ 14,98/mês</div>
-          <ul>
-            <li>Tudo do Pro Mensal</li>
-            <li>6 meses pelo preço de 4,5</li>
-            <li>Até 2 computadores</li>
-          </ul>
-          <a class="btn btn-ghost" href="https://pay.kiwify.com.br/YHZGobH">Assinar semestral</a>
+          <a class="btn btn-ghost" href="https://pay.kiwify.com.br/SldO3hC">Assinar mensal</a>
         </div>
         <div class="card plan best">
           <span class="tag">Mais vantajoso</span>
-          <div class="name">Pro Anual <span class="save">−37%</span></div>
-          <div class="price">R$ 149,90<small> /ano</small></div>
-          <div class="per">equivale a R$ 12,49/mês</div>
+          <div class="name">Pro Anual <span class="save">−33%</span></div>
+          <div class="price">R$ 239,90<small> /ano</small></div>
+          <div class="per">equivale a R$ 19,99/mês</div>
           <ul>
             <li>Tudo do Pro Mensal</li>
             <li>Menor preço por mês</li>
             <li>Até 2 computadores</li>
           </ul>
-          <a class="btn btn-brand" href="https://pay.kiwify.com.br/iJv96oC">Assinar anual</a>
+          <a class="btn btn-brand" href="https://pay.kiwify.com.br/OvbxfeK">Assinar anual</a>
         </div>
       </div>
       <div class="guarantee">
@@ -509,7 +497,7 @@
         <h2 style="margin-top:0">Pare de adivinhar. <span class="grad">Fisgue os virais.</span></h2>
         <p class="lead">Comece grátis agora e assine o Pro quando quiser cortes sem limite de minutos.</p>
         <div class="cta-row">
-          <a class="btn btn-brand" href="https://pay.kiwify.com.br/iJv96oC">Assinar o Pro anual</a>
+          <a class="btn btn-brand" href="https://pay.kiwify.com.br/OvbxfeK">Assinar o Pro anual</a>
           <a class="btn btn-ghost" href="https://github.com/xhbarbosa/fisgaclip-releases/releases/latest/download/Fisgaclip-Setup.exe">Baixar grátis</a>
         </div>
       </div>
