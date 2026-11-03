@@ -63,6 +63,7 @@
   .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; letter-spacing: -.2px; }
   .logo-mark { width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(135deg, var(--brand), var(--brand2)); display: grid; place-items: center; }
   .nav nav { display: flex; gap: 24px; margin-left: auto; font-size: 14.5px; color: var(--sub); }
+  .nav nav a { white-space: nowrap; }
   .nav nav a:hover { color: var(--text); }
   .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; height: 46px; padding: 0 22px; border-radius: 11px; font-weight: 600; font-size: 15px; border: 1px solid transparent; cursor: pointer; transition: transform .15s, opacity .15s, background .15s; white-space: nowrap; }
   .btn:hover { transform: translateY(-1px); }
@@ -151,6 +152,11 @@
   details[open] summary::after { transform: rotate(45deg); }
   details p { margin: 0 0 18px; color: var(--sub); font-size: 15px; }
 
+  /* roadmap */
+  #roadmap { scroll-margin-top: 68px; }
+  .roadmap { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 820px; margin: 44px auto 0; }
+  .idea { display: inline-block; color: #C9BEFF; background: rgba(124,92,255,.14); font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; }
+
   .final { text-align: center; border-radius: 24px; padding: 64px 28px; background: radial-gradient(120% 140% at 50% 0%, rgba(124,92,255,.35), var(--card) 60%); border: 1px solid rgba(124,92,255,.35); }
   footer { border-top: 1px solid var(--line); padding: 36px 0 48px; color: var(--muted); font-size: 13.5px; }
   footer .row { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
@@ -162,6 +168,10 @@
     .feature, .feature.rev { grid-template-columns: 1fr; gap: 24px; }
     .feature.rev .text { order: 0; }
   }
+  @media (max-width: 860px) {
+    .nav .wrap { gap: 14px; }
+    .nav nav { gap: 14px; }
+  }
   @media (max-width: 720px) {
     .nav nav { display: none; }
     .nav .btn { margin-left: auto; }
@@ -170,7 +180,7 @@
     .compare .box { width: 100%; justify-content: center; flex-wrap: wrap; }
     .compare svg { transform: rotate(90deg); }
     .shot { margin-top: 44px; }
-    .who, .steps, .plans { grid-template-columns: 1fr; }
+    .who, .steps, .plans, .roadmap { grid-template-columns: 1fr; }
     section { padding: 64px 0; }
     .wrap { padding: 0 16px; }
     .btn { width: 100%; }
@@ -242,6 +252,7 @@
       <a href="#como-funciona">Como funciona</a>
       <a href="#planos">Planos</a>
       <a href="#duvidas">Dúvidas</a>
+      <a href="#roadmap">Roadmap</a>
     </nav>
     <a class="btn btn-brand btn-sm" href="https://github.com/xhbarbosa/fisgaclip-releases/releases/latest/download/Fisgaclip-Setup.exe">Baixar grátis</a>
   </div>
@@ -455,6 +466,21 @@
     </div>
   </section>
 
+  <section id="roadmap" style="padding-top:40px">
+    <div class="wrap center">
+      <div class="eyebrow">Roadmap</div>
+      <h2>O que estamos pensando para o Fisgaclip</h2>
+      <p class="lead">Estas são as ideias que queremos trazer para os cortes. Nenhuma tem data ainda, e a lista pode mudar.</p>
+      <div class="roadmap" style="text-align:left">
+        <div class="card"><span class="idea">Ideia</span><h3>Prévia do enquadramento</h3><p>Ver como o corte vertical fica à esquerda, no centro ou à direita antes de baixar, no YouTube e na Twitch.</p></div>
+        <div class="card"><span class="idea">Ideia</span><h3>Duas pessoas na tela</h3><p>Uma pessoa em cima e a outra embaixo no corte vertical, para vídeos em que as duas aparecem no mesmo plano.</p></div>
+        <div class="card"><span class="idea">Ideia</span><h3>Sua frase no corte</h3><p>Escrever a sua própria frase para aparecer no topo do corte vertical.</p></div>
+        <div class="card"><span class="idea">Ideia</span><h3>Sua marca, se quiser</h3><p>Colocar seu logo ou seu @ nos cortes verticais e escolher a cor e a fonte das legendas.</p></div>
+      </div>
+      <p style="font-size:13.5px;color:var(--sub);margin:24px 0 0">Assine pelo que o Fisgaclip já faz hoje: esta lista mostra ideias, não recursos disponíveis.</p>
+    </div>
+  </section>
+
   <section style="padding-top:20px">
     <div class="wrap">
       <div class="final">
@@ -473,7 +499,7 @@
   <div class="wrap">
     <div class="row">
       <div class="logo" style="font-size:16px"><span class="logo-mark" style="width:26px;height:26px;border-radius:7px"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5v7.5M4.6 7 8 10.3 11.4 7M3.5 13.2h9"/></svg></span>Fisgaclip</div>
-      <div style="display:flex;gap:22px;flex-wrap:wrap"><a href="termos.html">Termos de uso e privacidade</a><a href="#duvidas">Dúvidas</a><a href="#planos">Planos</a></div>
+      <div style="display:flex;gap:22px;flex-wrap:wrap"><a href="termos.html">Termos de uso e privacidade</a><a href="#duvidas">Dúvidas</a><a href="#planos">Planos</a><a href="#roadmap">Roadmap</a></div>
     </div>
     <p class="legal">© 2026 Fisgaclip. Fisgaclip não é afiliado, patrocinado ou endossado por YouTube, Google, TikTok, ByteDance, Instagram, Meta, X ou Twitch; os nomes dessas plataformas são marcas de seus respectivos donos e aparecem aqui apenas para indicar compatibilidade. Use o app somente com conteúdo que você tem direito de baixar. Pagamentos processados pela Kiwify.</p>
   </div>
